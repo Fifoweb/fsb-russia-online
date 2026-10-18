@@ -1,0 +1,65 @@
+{
+  "base": "https://fifoweb.github.io/fsb-russia-online/",
+  "started": "2026-10-18T16:44:34.890Z",
+  "checks": [
+    "Real wheel scrolling visits every section in menu order in both directions; focus is preserved",
+    "Smooth menu navigation, same-link navigation and browser Back",
+    "Direct links and reload, mobile menu, separate full calculator and return from documents",
+    "Native keyboard scrolling, reduced motion and no JavaScript errors"
+  ],
+  "errors": [],
+  "sequences": [
+    {
+      "width": 390,
+      "down": [
+        "home",
+        "about",
+        "divisions",
+        "ranks",
+        "equipment",
+        "materials",
+        "gallery",
+        "faq",
+        "join"
+      ],
+      "up": [
+        "join",
+        "faq",
+        "gallery",
+        "materials",
+        "equipment",
+        "ranks",
+        "divisions",
+        "about",
+        "home"
+      ]
+    },
+    {
+      "width": 1440,
+      "down": [
+        "home",
+        "about",
+        "divisions",
+        "ranks",
+        "equipment",
+        "materials",
+        "gallery",
+        "faq",
+        "join"
+      ],
+      "up": [
+        "join",
+        "faq",
+        "gallery",
+        "materials",
+        "equipment",
+        "ranks",
+        "divisions",
+        "about",
+        "home"
+      ]
+    }
+  ],
+  "status": "passed",
+  "finished": "2026-10-18T16:44:56.162Z"
+}
