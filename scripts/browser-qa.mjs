@@ -16,9 +16,9 @@ page.on('pageerror',e=>report.errors.push(e.message));
 page.on('console',message=>{if(message.type()==='error')report.errors.push(message.text());});
 page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(base.split('#')[0]))report.errors.push(`${r.status()} ${r.url()}`);});
 async function go(route){await page.goto(base.split('#')[0]+'#'+route,{waitUntil:'networkidle'});await page.waitForFunction(name=>document.body.dataset.page===name,route.split('/')[0]);await page.evaluate(()=>document.fonts.ready);}
-async function shot(name,fullPage=true){await page.locator('#toast').waitFor({state:'hidden',timeout:6000});const file=path.join(out,name+'.jpg');await page.screenshot({path:file,fullPage,type:'jpeg',quality:82,animations:'disabled'});report.screenshots.push(path.basename(file));}
+async function shot(name,fullPage=true){await page.locator('#toast').waitFor({state:'hidden',timeout:6000});const file=path.join(out,name+'.jpg');if(fullPage){const active=await page.evaluate(()=>document.body.dataset.page);await page.locator(`#content > [data-page="${active}"]`).screenshot({path:file,type:'jpeg',quality:82,animations:'disabled'});}else await page.screenshot({path:file,type:'jpeg',quality:82,animations:'disabled'});report.screenshots.push(path.basename(file));}
 async function qty(id,value){const input=page.locator(`[data-quantity="${id}"][data-context="catalog"]`);await input.fill(value);await input.press('Tab');return Number(await input.inputValue());}
-async function loadVisibleImages(){await page.evaluate(async()=>{for(const image of document.images){if(image.getBoundingClientRect().height>0)image.loading='eager';}await Promise.all([...document.images].filter(i=>i.getBoundingClientRect().height>0).map(i=>i.complete?Promise.resolve():new Promise(resolve=>{i.addEventListener('load',resolve,{once:true});i.addEventListener('error',resolve,{once:true});})));for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight/2){scrollTo({top:y,behavior:'instant'});await new Promise(requestAnimationFrame);}scrollTo({top:0,behavior:'instant'});await new Promise(requestAnimationFrame);});}
+async function loadVisibleImages(){await page.evaluate(async()=>{const scope=document.querySelector(`#content > [data-page="${document.body.dataset.page}"]`);const images=[...scope.querySelectorAll('img')];for(const image of images)image.loading='eager';await Promise.all(images.map(i=>i.complete?Promise.resolve():new Promise(resolve=>{i.addEventListener('load',resolve,{once:true});i.addEventListener('error',resolve,{once:true});})));});}
 try{
   await go('crafts');await page.evaluate(()=>localStorage.clear());await page.reload({waitUntil:'networkidle'});
   for(const id of ['5005','347','124'])await page.locator(`[data-add="${id}"]`).click();
@@ -63,16 +63,16 @@ try{
   report.checks.push('Keyboard lightbox, arrows, Escape, rank tabs, FAQ, materials and deep links');
   for(const width of [360,390,768,1440]){
     await page.setViewportSize({width,height:width<700?844:1000});
-    for(const route of ['home','about','divisions','ranks','crafts','materials','gallery','join','faq','review']){
+    for(const route of ['home','about','divisions','ranks','equipment','crafts','materials','gallery','join','faq','review']){
       await go(route);await loadVisibleImages();
-      const layout=await page.evaluate(()=>({viewport:innerWidth,width:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>i.getBoundingClientRect().height>0&&(!i.complete||i.naturalWidth===0)).map(i=>i.src)}));
+      const layout=await page.evaluate(()=>({viewport:innerWidth,width:document.documentElement.scrollWidth,broken:[...document.querySelector(`#content > [data-page="${document.body.dataset.page}"]`).querySelectorAll('img')].filter(i=>i.getBoundingClientRect().height>0&&(!i.complete||i.naturalWidth===0)).map(i=>i.src)}));
       assert.ok(layout.width<=layout.viewport,`${route} ${width}: horizontal overflow ${layout.width}`);assert.deepEqual(layout.broken,[],`${route} ${width}: broken images`);
       if([390,1440].includes(width)&&['home','crafts','gallery'].includes(route))await shot(`${route}-${width}`);
     }
     report.widths.push(width);
   }
   await page.setViewportSize({width:390,height:844});await go('home');await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
-  await page.locator('#menu-toggle').click();await page.locator('#navigation a[href="#crafts"]').click();assert.equal(await page.locator('#navigation a[href="#crafts"]').getAttribute('aria-current'),'page');
+  await page.locator('#menu-toggle').click();await page.locator('#navigation a[href="#equipment"]').click();assert.equal(await page.locator('#navigation a[href="#equipment"]').getAttribute('aria-current'),'location');await page.locator('#content > [data-page="equipment"] .button[href="#crafts"]').click();
   await page.locator('#mobile-cart-link').click();assert.equal(await page.locator('#cart').getAttribute('aria-modal'),'true');await shot('crafts-mobile-summary',false);await page.keyboard.press('Escape');assert.ok(!(await page.locator('#cart').isVisible()));
   report.checks.push('Mobile menu, active section and keyboard-accessible calculation drawer');
   await page.emulateMedia({reducedMotion:'reduce'});await go('home');assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');

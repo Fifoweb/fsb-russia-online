@@ -1,7 +1,7 @@
 [
   {
     "path": "app.js",
-    "sha256": "03d7ce4ce9ec28b4923407d81c53fe0bf0ec0f6b75cf492f6dfacac092acf5a6"
+    "sha256": "f6089e2095dc89faf776793cfcb24fea0fb7278f31229291c19e6a3eb3c11f73"
   },
   {
     "path": "assets/emblem.webp",
@@ -281,7 +281,7 @@
   },
   {
     "path": "index.html",
-    "sha256": "3d463404cc6f427d4f7817047c306d8db26d88bc84f722b07210c80690fde10e"
+    "sha256": "a4d22df78b146a5b462a71150f73768b108fb421e22116b22e70f21cb4601ca3"
   },
   {
     "path": "resources-data.js",
@@ -289,6 +289,6 @@
   },
   {
     "path": "styles.css",
-    "sha256": "211f2547763a7cfe9c90b4c93fa0a27c5e7efecfbdf59664132c201ea6d6e383"
+    "sha256": "c31878fe937b348730297e1887e919ddeb549afdf073a29bb995b4a8dd9ac61e"
   }
 ]

@@ -178,28 +178,73 @@ document.addEventListener('keydown',e=>{
   if(e.shiftKey && (document.activeElement===first || document.activeElement===$('#cart-title'))) {e.preventDefault();last.focus();}
   else if(!e.shiftKey && document.activeElement===last) {e.preventDefault();first.focus();}
 });
-const titles={home:'Главная',about:'О службе',divisions:'Подразделения',ranks:'Звания',crafts:'Крафты',materials:'Материалы сотрудника',gallery:'Галерея',join:'Вступление',faq:'Частые вопросы',review:'Источники и уточнения',notfound:'Раздел не найден'};
+const titles={home:'Главная',about:'О службе',divisions:'Подразделения',ranks:'Звания',equipment:'Крафты',crafts:'Крафты',materials:'Материалы сотрудника',gallery:'Галерея',join:'Вступление',faq:'Частые вопросы',review:'Источники и уточнения',notfound:'Раздел не найден'};
+const sectionOrder=['home','about','divisions','ranks','equipment','materials','gallery','faq','join'];
+const portalSections=sectionOrder.map(name=>$(`#content > [data-page="${name}"]`));
+let portalView=false, scrollFrame=0, navigationTarget=null, navigationTimer, navigationSequence=0, observedHash=location.hash;
+history.scrollRestoration='manual';
+function setActiveSection(page,updateAddress=false) {
+  activePage=page;document.body.dataset.page=page;
+  document.title=page==='home'?'ФСБ | Россия Онлайн':`${titles[page]} · ФСБ | Россия Онлайн`;
+  const menuPage=page==='crafts'?'equipment':page;
+  $$('a[href^="#"]').forEach(link=>{
+    const active=link.hash==='#'+menuPage;
+    link.classList.toggle('active',active);
+    if(active)link.setAttribute('aria-current',portalView?'location':'page');else link.removeAttribute('aria-current');
+  });
+  if(updateAddress&&location.hash!=='#'+page)history.replaceState(null,'','#'+page);
+  observedHash=location.hash;
+}
+function syncScrollSection() {
+  scrollFrame=0;
+  if(!portalView||navigationTarget||location.hash!==observedHash||document.querySelector('dialog[open]')||$('#navigation').classList.contains('open'))return;
+  const readingLine=$('.header').getBoundingClientRect().bottom+Math.min(innerHeight*.16,140);
+  let page='home';
+  for(const section of portalSections)if(section.getBoundingClientRect().top<=readingLine)page=section.dataset.page;
+  if(scrollY+innerHeight>=document.documentElement.scrollHeight-2)page=sectionOrder.at(-1);
+  if(page!==activePage)setActiveSection(page,true);
+}
+function scheduleScrollSection(){if(!scrollFrame)scrollFrame=requestAnimationFrame(syncScrollSection);}
+function releaseNavigation(){navigationTarget=null;clearTimeout(navigationTimer);scheduleScrollSection();}
+window.addEventListener('scroll',scheduleScrollSection,{passive:true});
+window.addEventListener('resize',scheduleScrollSection,{passive:true});
+window.addEventListener('scrollend',releaseNavigation,{passive:true});
+for(const event of ['wheel','touchstart'])window.addEventListener(event,()=>{navigationSequence++;releaseNavigation();},{passive:true});
+window.addEventListener('keydown',e=>{if(['PageDown','PageUp','ArrowDown','ArrowUp','Home','End',' '].includes(e.key)){navigationSequence++;releaseNavigation();}});
 function route(initial=false) {
   const hash=location.hash.slice(1)||'home', parts=hash.split('/');
-  let page=parts[0]; if(page==='structure')page='divisions'; if(page==='cart')page='crafts'; if(page==='home-brief')page='home';
+  let page=parts[0]; if(page==='structure')page='divisions'; if(page==='cart')page='crafts'; if(page==='home-brief')page='about';
   if(!Object.hasOwn(titles,page))page='notfound';
-  activePage=page; document.body.dataset.page=page;
-  $$('[data-page]').forEach(section=>section.hidden=section.dataset.page!==page);
-  document.title=page==='home'?'ФСБ | Россия Онлайн':`${titles[page]} · ФСБ | Россия Онлайн`;
-  $$('a[href^="#"]').forEach(link=>{const active=link.hash==='#'+page;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
+  portalView=sectionOrder.includes(page)&&!(page==='materials'&&parts[1]);
+  document.body.dataset.view=portalView?'portal':'standalone';
+  $$('#content > [data-page]').forEach(section=>section.hidden=portalView?!sectionOrder.includes(section.dataset.page):section.dataset.page!==page);
+  setActiveSection(page);
   closeMenu();setCartOpen(false,false);if($('#lightbox').open)$('#lightbox').close();
-  if(page==='materials') {
-    const id=parts[1], item=MATERIALS.find(x=>x.id===id);
+  if(portalView||page==='materials') {
+    const id=page==='materials'?parts[1]:null, item=MATERIALS.find(x=>x.id===id);
     $('#material-detail').hidden=!id;$('#material-grid').hidden=!!id;$('.material-search').hidden=!!id;
     $('#material-empty').hidden=!!id;
     if(id) $('#material-detail').innerHTML=item?`<a class="text-link" href="#materials">← Все материалы</a><div class="eyebrow">${esc(item.category)}</div><h2 tabindex="-1">${esc(item.title)}</h2>${item.paragraphs.map(text=>`<p>${esc(text)}</p>`).join('')}${item.link?`<a href="${item.link[0]}" class="button primary">${esc(item.link[1])}</a>`:''}`:'<h2 tabindex="-1">Материал не найден</h2><p>Проверьте адрес или вернитесь к списку.</p><a href="#materials" class="button outline">Все материалы</a>';
     else renderMaterials();
   }
-  if(hash==='home-brief') requestAnimationFrame(()=>$('#home-brief').scrollIntoView({behavior:reducedMotion()?'instant':'smooth'}));
-  else { window.scrollTo({top:0,behavior:'instant'}); if(!initial) (page==='materials'&&parts[1]?$('#material-detail h2'):$(`[data-page="${page}"] h1`))?.focus({preventScroll:true}); }
+  const sequence=++navigationSequence;
+  clearTimeout(navigationTimer);navigationTarget=portalView?page:null;
+  const focusTarget=page==='materials'&&parts[1]?$('#material-detail h2'):$(`#content > [data-page="${page}"] h1`);
+  const position=()=>requestAnimationFrame(()=>{
+    if(sequence!==navigationSequence)return;
+    if(portalView)$(`#content > [data-page="${page}"]`).scrollIntoView({block:'start',behavior:initial||reducedMotion()?'instant':'smooth'});
+    else window.scrollTo({top:0,behavior:'instant'});
+    if(!initial)focusTarget?.focus({preventScroll:true});
+    navigationTimer=setTimeout(releaseNavigation,1200);
+  });
+  if(initial&&document.fonts)document.fonts.ready.then(position);else position();
   if(hash==='cart')setCartOpen(true);
 }
-document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(a && a.hash===location.hash && a.hash!=='#content') {e.preventDefault();route();} });
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a||e.defaultPrevented||a.hash==='#content'||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  e.preventDefault();if(location.hash!==a.hash)history.pushState(null,'',a.hash);route();
+});
 window.addEventListener('hashchange',()=>route());
 window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY||e.key===null){try{selection=sanitizeSelection(JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'),CATALOG);}catch{selection={};}}if(e.key===FAVORITES_KEY||e.key===null){try{favorites=sanitizeFavorites(JSON.parse(localStorage.getItem(FAVORITES_KEY)||'[]'),CATALOG);}catch{favorites=[];}}renderCatalog();renderCart();});
 document.addEventListener('error',e=>{const img=e.target;if(img?.tagName!=='IMG')return;if(img.id==='lightbox-image'){$('#lightbox-title').textContent='Не удалось загрузить изображение';return;}img.hidden=true;const fallback=document.createElement('span');fallback.className='image-fallback';fallback.textContent='Изображение недоступно';img.parentElement.append(fallback);},true);
