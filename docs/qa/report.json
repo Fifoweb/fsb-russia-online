@@ -1,0 +1,34 @@
+{
+  "started": "2026-10-18T16:02:01.632Z",
+  "base": "https://fsb-russia-online.wgjk556.chatgpt.site/",
+  "widths": [
+    360,
+    390,
+    768,
+    1440
+  ],
+  "checks": [
+    "Mixed materials, three positions and exact 10.004 kg",
+    "Input: blank, negative, fractional, pasted text, zero and maximum",
+    "Favorites and calculation survive reload",
+    "Search, categories, sorting and honest confirmed-only empty state",
+    "Calculation synchronizes between tabs",
+    "Real clipboard, PNG and TXT downloads",
+    "Unknown weight is explicitly incomplete",
+    "Keyboard lightbox, arrows, Escape, rank tabs, FAQ, materials and deep links",
+    "Mobile menu, active section and keyboard-accessible calculation drawer",
+    "Reduced motion; no JavaScript errors or missing network resources"
+  ],
+  "errors": [],
+  "screenshots": [
+    "home-390.jpg",
+    "crafts-390.jpg",
+    "gallery-390.jpg",
+    "home-1440.jpg",
+    "crafts-1440.jpg",
+    "gallery-1440.jpg",
+    "crafts-mobile-summary.jpg"
+  ],
+  "status": "passed",
+  "finished": "2026-10-18T16:02:16.076Z"
+}

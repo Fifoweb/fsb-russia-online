@@ -1,0 +1,105 @@
+[
+  {
+    "label": "Младший сержант",
+    "path": "assets/ranks/rank-01.svg",
+    "chevrons": "2"
+  },
+  {
+    "label": "Сержант",
+    "path": "assets/ranks/rank-02.svg",
+    "chevrons": "3"
+  },
+  {
+    "label": "Старшина",
+    "path": "assets/ranks/rank-03.svg",
+    "bar": "1"
+  },
+  {
+    "label": "Прапорщик",
+    "path": "assets/ranks/rank-04.svg",
+    "stars": "2",
+    "stripes": "0",
+    "star": "sm"
+  },
+  {
+    "label": "Младший лейтенант",
+    "path": "assets/ranks/rank-05.svg",
+    "stars": "1",
+    "stripes": "1",
+    "star": "sm"
+  },
+  {
+    "label": "Лейтенант",
+    "path": "assets/ranks/rank-06.svg",
+    "stars": "2",
+    "stripes": "1",
+    "star": "sm"
+  },
+  {
+    "label": "Старший лейтенант",
+    "path": "assets/ranks/rank-07.svg",
+    "stars": "3",
+    "stripes": "1",
+    "star": "sm"
+  },
+  {
+    "label": "Капитан",
+    "path": "assets/ranks/rank-08.svg",
+    "stars": "4",
+    "stripes": "1",
+    "star": "sm"
+  },
+  {
+    "label": "Майор",
+    "path": "assets/ranks/rank-09.svg",
+    "stars": "1",
+    "stripes": "2",
+    "star": "lg"
+  },
+  {
+    "label": "Подполковник",
+    "path": "assets/ranks/rank-10.svg",
+    "stars": "2",
+    "stripes": "2",
+    "star": "lg"
+  },
+  {
+    "label": "Полковник",
+    "path": "assets/ranks/rank-11.svg",
+    "stars": "3",
+    "stripes": "2",
+    "star": "lg"
+  },
+  {
+    "label": "Генерал-майор",
+    "path": "assets/ranks/rank-12.svg",
+    "stars": "1",
+    "stripes": "0",
+    "star": "lg",
+    "field": "gold"
+  },
+  {
+    "label": "Генерал-лейтенант",
+    "path": "assets/ranks/rank-13.svg",
+    "stars": "2",
+    "stripes": "0",
+    "star": "lg",
+    "field": "gold"
+  },
+  {
+    "label": "Генерал-полковник",
+    "path": "assets/ranks/rank-14.svg",
+    "stars": "3",
+    "stripes": "0",
+    "star": "lg",
+    "field": "gold"
+  },
+  {
+    "label": "Генерал армии",
+    "path": "assets/ranks/rank-15.svg",
+    "stars": "1",
+    "stripes": "0",
+    "star": "xl",
+    "field": "gold"
+  }
+]

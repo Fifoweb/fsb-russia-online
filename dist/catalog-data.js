@@ -1,0 +1,511 @@
+// Source: Fifoweb/ysb-russia-online-wiki, src/data/crafts.ts; reviewed 2026-10-18.
+// FSB availability is NOT confirmed. Update fsbVerified only after verification in game.
+export const CATALOG = [
+  {
+    "id": "124",
+    "name": "Противовирусная вакцина",
+    "category": "medical",
+    "materials": 1,
+    "weightGrams": 4,
+    "image": "assets/items/124.webp",
+    "recipe": {
+      "medical": 1
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "168",
+    "name": "Азитромицин",
+    "category": "medical",
+    "materials": 10,
+    "weightGrams": 5,
+    "image": "assets/items/168.webp",
+    "recipe": {
+      "medical": 10
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "169",
+    "name": "Активированный уголь",
+    "category": "medical",
+    "materials": 10,
+    "weightGrams": 5,
+    "image": "assets/items/169.webp",
+    "recipe": {
+      "medical": 10
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "170",
+    "name": "Парацетамол",
+    "category": "medical",
+    "materials": 1,
+    "weightGrams": 5,
+    "image": "assets/items/170.webp",
+    "recipe": {
+      "medical": 1
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "252",
+    "name": "Эпинефрин",
+    "category": "medical",
+    "materials": 10,
+    "weightGrams": 150,
+    "image": "assets/items/252.webp",
+    "recipe": {
+      "medical": 10
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "281",
+    "name": "Дефибриллятор",
+    "category": "medical",
+    "materials": 400,
+    "weightGrams": 500,
+    "image": "assets/items/281.webp",
+    "recipe": {
+      "medical": 400
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5002",
+    "name": "АПС «Стечкин»",
+    "category": "weapon",
+    "materials": 50,
+    "weightGrams": 800,
+    "image": "assets/items/5002.webp",
+    "recipe": {
+      "weapon": 50
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5004",
+    "name": "Сайга-12К",
+    "category": "weapon",
+    "materials": 200,
+    "weightGrams": 3500,
+    "image": "assets/items/5004.webp",
+    "recipe": {
+      "weapon": 200
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5005",
+    "name": "АК-12",
+    "category": "weapon",
+    "materials": 180,
+    "weightGrams": 3000,
+    "image": "assets/items/5005.webp",
+    "recipe": {
+      "weapon": 180
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5006",
+    "name": "АКС-74У",
+    "category": "weapon",
+    "materials": 100,
+    "weightGrams": 3000,
+    "image": "assets/items/5006.webp",
+    "recipe": {
+      "weapon": 100
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5009",
+    "name": "Пистолет Макарова (ПМ)",
+    "category": "weapon",
+    "materials": 40,
+    "weightGrams": 800,
+    "image": "assets/items/5009.webp",
+    "recipe": {
+      "weapon": 40
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5011",
+    "name": "ПП-91 «Кедр»",
+    "category": "weapon",
+    "materials": 70,
+    "weightGrams": 1500,
+    "image": "assets/items/5011.webp",
+    "recipe": {
+      "weapon": 70
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5012",
+    "name": "СВ-98",
+    "category": "weapon",
+    "materials": 5000,
+    "weightGrams": 4500,
+    "image": "assets/items/5012.webp",
+    "recipe": {
+      "weapon": 5000
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5016",
+    "name": "АС «Вал»",
+    "category": "weapon",
+    "materials": 200,
+    "weightGrams": 3000,
+    "image": "assets/items/5016.webp",
+    "recipe": {
+      "weapon": 200
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5017",
+    "name": "ПП-2000",
+    "category": "weapon",
+    "materials": 70,
+    "weightGrams": 1800,
+    "image": "assets/items/5017.webp",
+    "recipe": {
+      "weapon": 70
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "pp-19-01-vityaz",
+    "name": "ПП-19-01 «Витязь»",
+    "category": "weapon",
+    "materials": 100,
+    "weightGrams": 2200,
+    "image": "assets/items/pp-19-01-vityaz.webp",
+    "recipe": {
+      "weapon": 100
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "sr-3m-vikhr",
+    "name": "СР-3М «Вихрь»",
+    "category": "weapon",
+    "materials": 200,
+    "weightGrams": 2200,
+    "image": "assets/items/sr-3m-vikhr.webp",
+    "recipe": {
+      "weapon": 200
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5018",
+    "name": "СВД",
+    "category": "weapon",
+    "materials": 5000,
+    "weightGrams": 4500,
+    "image": "assets/items/5018.webp",
+    "recipe": {
+      "weapon": 5000
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5019",
+    "name": "АН-94 «Абакан»",
+    "category": "weapon",
+    "materials": 150,
+    "weightGrams": 3000,
+    "image": "assets/items/5019.webp",
+    "recipe": {
+      "weapon": 150
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5028",
+    "name": "МПЛ",
+    "category": "weapon",
+    "materials": 30,
+    "weightGrams": 800,
+    "image": "assets/items/5028.webp",
+    "recipe": {
+      "weapon": 30
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5500",
+    "name": "Пистолетный патрон",
+    "category": "weapon",
+    "materials": 1,
+    "weightGrams": 6,
+    "image": "assets/items/5500.webp",
+    "recipe": {
+      "weapon": 1
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5502",
+    "name": "Патрон для ПП",
+    "category": "weapon",
+    "materials": 5,
+    "weightGrams": 9,
+    "image": "assets/items/5502.webp",
+    "recipe": {
+      "weapon": 5
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5504",
+    "name": "Патрон для дробовика",
+    "category": "weapon",
+    "materials": 1,
+    "weightGrams": 40,
+    "image": "assets/items/5504.webp",
+    "recipe": {
+      "weapon": 1
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5506",
+    "name": "Патрон для лёгкого автомата",
+    "category": "weapon",
+    "materials": 7,
+    "weightGrams": 12,
+    "image": "assets/items/5506.webp",
+    "recipe": {
+      "weapon": 7
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "5508",
+    "name": "Патрон для тяжёлого автомата",
+    "category": "weapon",
+    "materials": 10,
+    "weightGrams": 10,
+    "image": "assets/items/5508.webp",
+    "recipe": {
+      "weapon": 10
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "suppressor",
+    "name": "Глушитель",
+    "category": "weapon",
+    "materials": 25,
+    "weightGrams": 200,
+    "image": "assets/items/suppressor.webp",
+    "recipe": {
+      "weapon": 25
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "holographic-sight",
+    "name": "Голографический прицел",
+    "category": "weapon",
+    "materials": 20,
+    "weightGrams": 300,
+    "image": "assets/items/holographic-sight.webp",
+    "recipe": {
+      "weapon": 20
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "optical-sight",
+    "name": "Оптический прицел",
+    "category": "weapon",
+    "materials": 50,
+    "weightGrams": 300,
+    "image": "assets/items/optical-sight.webp",
+    "recipe": {
+      "weapon": 50
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "grip",
+    "name": "Рукоятка",
+    "category": "weapon",
+    "materials": 25,
+    "weightGrams": 500,
+    "image": "assets/items/grip.webp",
+    "recipe": {
+      "weapon": 25
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "extended-magazine",
+    "name": "Увеличенный магазин",
+    "category": "weapon",
+    "materials": 30,
+    "weightGrams": 700,
+    "image": "assets/items/extended-magazine.webp",
+    "recipe": {
+      "weapon": 30
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "weapon-flashlight",
+    "name": "Фонарик",
+    "category": "weapon",
+    "materials": 20,
+    "weightGrams": 200,
+    "image": "assets/items/weapon-flashlight.webp",
+    "recipe": {
+      "weapon": 20
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "92",
+    "name": "Болгарка",
+    "category": "technical",
+    "materials": 2000,
+    "weightGrams": 3500,
+    "image": "assets/items/92.webp",
+    "recipe": {
+      "technical": 2000
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "112",
+    "name": "Наручники",
+    "category": "technical",
+    "materials": 2,
+    "weightGrams": 350,
+    "image": "assets/items/112.webp",
+    "recipe": {
+      "technical": 2
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "216",
+    "name": "Полицейская дубинка",
+    "category": "technical",
+    "materials": 5,
+    "weightGrams": 750,
+    "image": "assets/items/216.webp",
+    "recipe": {
+      "technical": 5
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "244",
+    "name": "Тазер",
+    "category": "technical",
+    "materials": 5,
+    "weightGrams": 220,
+    "image": "assets/items/244.webp",
+    "recipe": {
+      "technical": 5
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "334",
+    "name": "ИРП «Искра»",
+    "category": "technical",
+    "materials": 5,
+    "weightGrams": 600,
+    "image": "assets/items/334.webp",
+    "recipe": {
+      "technical": 5
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "347",
+    "name": "Тяжелый бронежилет служебный",
+    "category": "technical",
+    "materials": 30,
+    "weightGrams": 4000,
+    "image": "assets/items/347.webp",
+    "recipe": {
+      "technical": 30
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "456",
+    "name": "Легкий бронежилет служебный",
+    "category": "technical",
+    "materials": 15,
+    "weightGrams": 2000,
+    "image": "assets/items/456.webp",
+    "recipe": {
+      "technical": 15
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  },
+  {
+    "id": "1006",
+    "name": "Электрическая дубинка",
+    "category": "technical",
+    "materials": 10,
+    "weightGrams": 580,
+    "image": "assets/items/1006.webp",
+    "recipe": {
+      "technical": 10
+    },
+    "fsbVerified": false,
+    "source": "ГИБДД | Россия Онлайн"
+  }
+];
